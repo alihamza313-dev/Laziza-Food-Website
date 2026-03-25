@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services — Laziza Food</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+
+    :root {
+      --primary:      #e8183a;
+      --primary-dark: #b5102b;
+      --primary-light:#ffeef1;
+      --accent:       #ff6b35;
+      --gold:         #f5a623;
+      --text-dark:    #1a1a2e;
+      --text-mid:     #4a4a6a;
+      --text-light:   #9898b0;
+      --bg:           #f7f7fc;
+      --white:        #ffffff;
+      --border:       #ebebf5;
+      --shadow-sm:    0 2px 8px rgba(0,0,0,0.07);
+      --shadow-md:    0 8px 28px rgba(0,0,0,0.10);
+      --shadow-lg:    0 20px 50px rgba(0,0,0,0.13);
+      --radius:       16px;
+      --radius-sm:    10px;
+      --radius-full:  999px;
+      --font:         'Poppins', sans-serif;
+      --transition:   0.28s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html, body { font-family:var(--font); background:var(--bg); color:var(--text-dark); }
+    a { text-decoration:none; color:inherit; }
+    button { font-family:var(--font); cursor:pointer; border:none; outline:none; }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position:sticky; top:0; z-index:100;
+      background:rgba(255,255,255,0.95); backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border); box-shadow:var(--shadow-sm);
+      padding:0 40px; display:flex; align-items:center;
+      justify-content:space-between; height:64px;
+    }
+    .nav-brand { display:flex; align-items:center; gap:10px; font-size:20px; font-weight:800; color:var(--primary); }
+    .nav-links { display:flex; align-items:center; gap:6px; }
+    .nav-links a {
+      font-size:13px; font-weight:500; color:var(--text-mid);
+      padding:7px 14px; border-radius:var(--radius-full);
+      transition:background var(--transition), color var(--transition);
+    }
+    .nav-links a:hover, .nav-links a.active { background:var(--primary); color:white; }
+    .nav-back {
+      display:flex; align-items:center; gap:6px;
+      font-size:13px; font-weight:500; color:var(--text-mid);
+      padding:7px 16px; border-radius:var(--radius-full);
+      border:1.5px solid var(--border); transition:all var(--transition);
+    }
+    .nav-back:hover { border-color:var(--primary); color:var(--primary); }
+
+    /* ── HERO ── */
+    .hero {
+      background:linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      padding:60px 40px 100px; text-align:center;
+      position:relative; overflow:hidden;
+    }
+    .hero::before, .hero::after {
+      content:''; position:absolute; border-radius:50%; background:rgba(255,255,255,0.08);
+    }
+    .hero::before { width:360px; height:360px; top:-100px; right:-60px; }
+    .hero::after  { width:220px; height:220px; bottom:-70px; left:80px; }
+    .hero-icon {
+      width:72px; height:72px; background:rgba(255,255,255,0.2); border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      margin:0 auto 20px; animation:pulse 2.5s ease-in-out infinite;
+    }
+    .hero-icon i { font-size:30px; color:white; }
+    .hero h1 { font-size:clamp(26px,5vw,44px); font-weight:800; color:white; letter-spacing:-1px; margin-bottom:12px; }
+    .hero p  { font-size:15px; color:rgba(255,255,255,0.85); max-width:520px; margin:0 auto; line-height:1.7; }
+
+    /* Stats strip below hero */
+    .stats-strip {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .stats-inner {
+      max-width: 900px; margin:0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      /* Pull upward into the hero */
+      transform: translateY(-36px);
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .stat-item {
+      padding: 24px 20px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+      transition: background var(--transition);
+    }
+    .stat-item:last-child { border-right:none; }
+    .stat-item:hover { background: var(--primary-light); }
+    .stat-num {
+      font-size: 28px; font-weight: 800; color: var(--primary); letter-spacing:-1px;
+    }
+    .stat-label { font-size: 12px; color: var(--text-light); font-weight: 500; margin-top: 4px; }
+
+    /* ── PAGE BODY ── */
+    .page-body { max-width:1100px; margin:0 auto; padding:0 24px 80px; }
+
+    /* Section title */
+    .section-title {
+      text-align: center; margin-bottom: 40px;
+      animation: fadeInUp 0.5s ease both;
+    }
+    .section-title .tag {
+      display:inline-block; background:var(--primary-light); color:var(--primary);
+      font-size:12px; font-weight:700; padding:5px 14px; border-radius:var(--radius-full);
+      letter-spacing:1px; text-transform:uppercase; margin-bottom:12px;
+    }
+    .section-title h2 {
+      font-size: clamp(22px,4vw,34px); font-weight:800; color:var(--text-dark);
+      letter-spacing:-0.5px; margin-bottom:10px;
+    }
+    .section-title p { font-size:15px; color:var(--text-mid); max-width:540px; margin:0 auto; line-height:1.7; }
+
+    /* ── MAIN SERVICE CARDS (Big 3) ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 70px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 36px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      animation: fadeInUp 0.5s ease both;
+    }
+    .service-card:nth-child(1) { animation-delay:0.05s; }
+    .service-card:nth-child(2) { animation-delay:0.12s; }
+    .service-card:nth-child(3) { animation-delay:0.19s; }
+
+    /* Top accent bar */
+    .service-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0); transition: transform var(--transition);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-light);
+    }
+
+    /* Large icon circle */
+    .service-icon-wrap {
+      width: 80px; height: 80px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 22px;
+      transition: transform var(--transition);
+    }
+    .service-card:hover .service-icon-wrap { transform: scale(1.1) rotate(5deg); }
+    .service-icon-wrap i { font-size: 32px; }
+
+    .icon-red    { background:#ffeef1; color:var(--primary); }
+    .icon-orange { background:#fff4ed; color:var(--accent); }
+    .icon-gold   { background:#fffbea; color:var(--gold); }
+    .icon-green  { background:#edfaf4; color:#27ae60; }
+    .icon-blue   { background:#edf4ff; color:#2980e4; }
+    .icon-purple { background:#f4eeff; color:#8b5cf6; }
+
+    .service-card h3 {
+      font-size:19px; font-weight:700; color:var(--text-dark);
+      margin-bottom:10px; letter-spacing:-0.2px;
+    }
+    .service-card p { font-size:14px; color:var(--text-mid); line-height:1.75; }
+
+    /* Badge on "Most Popular" card */
+    .badge {
+      position:absolute; top:18px; right:18px;
+      background: var(--primary); color:white;
+      font-size:10px; font-weight:700; padding:4px 10px;
+      border-radius:var(--radius-full); letter-spacing:0.5px;
+      text-transform: uppercase;
+    }
+
+    /* ── "WHY CHOOSE US" SECTION ── */
+    .why-section {
+      background: var(--white);
+      border-radius: var(--radius); border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm); padding: 48px 40px;
+      margin-bottom: 70px;
+      animation: fadeInUp 0.5s ease 0.3s both;
+    }
+    .why-section .section-title { margin-bottom:36px; }
+
+    .why-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+    }
+    .why-item {
+      display:flex; align-items:flex-start; gap:16px; padding:18px;
+      border-radius:var(--radius-sm); border:1px solid var(--border);
+      transition: background var(--transition), border-color var(--transition), transform var(--transition);
+    }
+    .why-item:hover {
+      background:var(--primary-light); border-color:var(--primary);
+      transform:translateX(4px);
+    }
+    .why-icon {
+      width:44px; height:44px; border-radius:10px; flex-shrink:0;
+      background:var(--primary-light); color:var(--primary);
+      display:flex; align-items:center; justify-content:center; font-size:18px;
+    }
+    .why-item h4 { font-size:14px; font-weight:700; color:var(--text-dark); margin-bottom:4px; }
+    .why-item p  { font-size:13px; color:var(--text-mid); line-height:1.65; }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: var(--radius); padding: 50px 40px;
+      text-align: center; position:relative; overflow:hidden;
+      animation: fadeInUp 0.5s ease 0.4s both;
+    }
+    .cta-banner::before {
+      content:''; position:absolute; width:250px; height:250px;
+      border-radius:50%; background:rgba(255,255,255,0.07);
+      top:-80px; right:-40px;
+    }
+    .cta-banner h2 { font-size:clamp(20px,3.5vw,30px); font-weight:800; color:white; margin-bottom:12px; }
+    .cta-banner p  { font-size:14px; color:rgba(255,255,255,0.85); max-width:460px; margin:0 auto 28px; line-height:1.7; }
+    .cta-buttons   { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+    .cta-btn-primary {
+      display:inline-flex; align-items:center; gap:8px;
+      background:white; color:var(--primary);
+      padding:13px 28px; border-radius:var(--radius-full);
+      font-size:14px; font-weight:700;
+      transition:opacity var(--transition), transform var(--transition);
+    }
+    .cta-btn-primary:hover { opacity:0.92; transform:translateY(-2px); }
+    .cta-btn-secondary {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(255,255,255,0.15); color:white;
+      padding:13px 28px; border-radius:var(--radius-full);
+      font-size:14px; font-weight:600;
+      border:1.5px solid rgba(255,255,255,0.5);
+      transition:background var(--transition), transform var(--transition);
+    }
+    .cta-btn-secondary:hover { background:rgba(255,255,255,0.25); transform:translateY(-2px); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeInUp {
+      from { opacity:0; transform:translateY(22px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    @keyframes pulse {
+      0%,100% { transform:scale(1); }
+      50%      { transform:scale(1.08); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:860px) {
+      .services-grid { grid-template-columns:1fr 1fr; }
+      .stats-inner   { grid-template-columns:repeat(2,1fr); }
+      .why-grid      { grid-template-columns:1fr; }
+    }
+    @media(max-width:600px) {
+      .navbar { padding:0 16px; }
+      .nav-links { display:none; }
+      .hero { padding:40px 20px 70px; }
+      .services-grid { grid-template-columns:1fr; }
+      .stats-inner { grid-template-columns:repeat(2,1fr); }
+      .why-section { padding:28px 20px; }
+      .cta-banner  { padding:36px 20px; }
+      .page-body   { padding:0 16px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-brand"><i class="fa fa-cutlery"></i> Laziza Food</div>
+    <div class="nav-links">
+      <a href="index.html"><i class="fa fa-home"></i> Home</a>
+      <a href="services.html" class="active"><i class="fa fa-star"></i> Services</a>
+      <a href="contact.html"><i class="fa fa-envelope"></i> Contact</a>
+      <a href="privacy.html"><i class="fa fa-lock"></i> Privacy</a>
+    </div>
+    <a href="index.html" class="nav-back"><i class="fa fa-arrow-left"></i> Back to Menu</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-icon"><i class="fa fa-star"></i></div>
+    <h1>Our Services</h1>
+    <p>From fast delivery to cozy dine-in, we go the extra mile to make every meal unforgettable.</p>
+  </div>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Happy Customers</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">30<span style="font-size:18px">min</span></div>
+        <div class="stat-label">Avg Delivery Time</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4.8<i class="fa fa-star" style="font-size:18px; color:var(--gold); margin-left:2px;"></i></div>
+        <div class="stat-label">Average Rating</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Customer Support</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE BODY -->
+  <div class="page-body">
+
+    <!-- Main Services -->
+    <div class="section-title">
+      <span class="tag">What We Offer</span>
+      <h2>Services Built Around You</h2>
+      <p>Every service we offer is designed with one goal — making your food experience as smooth and delicious as possible.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <span class="badge">Popular</span>
+        <div class="service-icon-wrap icon-red">
+          <i class="fa fa-motorcycle"></i>
+        </div>
+        <h3>Fast Delivery</h3>
+        <p>Get your favourite meals delivered hot and fresh to your doorstep. Our riders ensure quick and safe delivery within 30 minutes.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap icon-orange">
+          <i class="fa fa-cutlery"></i>
+        </div>
+        <h3>Cozy Dine-In</h3>
+        <p>Experience a warm, welcoming atmosphere perfect for family dinners, casual meetups, or a quiet meal for one. Clean tables, great vibes.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap icon-gold">
+          <i class="fa fa-mobile"></i>
+        </div>
+        <h3>Online Ordering</h3>
+        <p>Browse our full menu, customise your order, and pay online — all from your phone or computer. Ordering has never been this easy.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap icon-green">
+          <i class="fa fa-clock-o"></i>
+        </div>
+        <h3>Pre-Scheduling</h3>
+        <p>Plan ahead by scheduling your order for a specific time. Perfect for office lunches, parties, or when you know exactly when you'll be hungry.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap icon-blue">
+          <i class="fa fa-users"></i>
+        </div>
+        <h3>Catering & Events</h3>
+        <p>Hosting a gathering? We offer full catering services for events, parties, and corporate meetings. Contact us for a custom quote.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap icon-purple">
+          <i class="fa fa-headphones"></i>
+        </div>
+        <h3>24/7 Support</h3>
+        <p>Got an issue with your order? Our customer support team is available around the clock via chat, phone, or email to help you out.</p>
+      </div>
+
+    </div>
+
+    <!-- Why Choose Us -->
+    <div class="why-section">
+      <div class="section-title">
+        <span class="tag">Our Promise</span>
+        <h2>Why Choose Laziza Food?</h2>
+        <p>We're not just a food service — we're your reliable food partner.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="why-icon"><i class="fa fa-leaf"></i></div>
+          <div>
+            <h4>Fresh Ingredients</h4>
+            <p>Every dish is prepared using fresh, quality ingredients sourced daily from trusted suppliers.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon"><i class="fa fa-lock"></i></div>
+          <div>
+            <h4>Secure Payments</h4>
+            <p>Your payment information is fully encrypted. We support cash, card, and mobile wallet payments.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon"><i class="fa fa-map-marker"></i></div>
+          <div>
+            <h4>Live Order Tracking</h4>
+            <p>Track your delivery in real time from the moment it leaves our kitchen to your front door.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon"><i class="fa fa-recycle"></i></div>
+          <div>
+            <h4>Eco-Friendly Packaging</h4>
+            <p>We use biodegradable, eco-friendly packaging to reduce our environmental footprint.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Banner -->
+    <div class="cta-banner">
+      <h2>Ready to Order?</h2>
+      <p>Head back to our menu and place your order — it only takes a minute, and your food will be on its way!</p>
+      <div class="cta-buttons">
+        <a href="index.html" class="cta-btn-primary"><i class="fa fa-cutlery"></i> Browse Menu</a>
+        <a href="contact.html" class="cta-btn-secondary"><i class="fa fa-envelope"></i> Contact Us</a>
+      </div>
+    </div>
+
+  </div><!-- end page-body -->
+
+</body>
+</html>
