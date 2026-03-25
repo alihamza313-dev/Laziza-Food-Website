@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Laziza Food</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+
+    :root {
+      --primary:      #e8183a;
+      --primary-dark: #b5102b;
+      --primary-light:#ffeef1;
+      --accent:       #ff6b35;
+      --text-dark:    #1a1a2e;
+      --text-mid:     #4a4a6a;
+      --text-light:   #9898b0;
+      --bg:           #f7f7fc;
+      --white:        #ffffff;
+      --border:       #ebebf5;
+      --shadow-sm:    0 2px 8px rgba(0,0,0,0.07);
+      --shadow-md:    0 8px 28px rgba(0,0,0,0.10);
+      --radius:       16px;
+      --radius-sm:    10px;
+      --radius-full:  999px;
+      --font:         'Poppins', sans-serif;
+      --transition:   0.28s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html, body { font-family:var(--font); background:var(--bg); color:var(--text-dark); }
+    a { text-decoration:none; color:inherit; }
+    button { font-family:var(--font); cursor:pointer; border:none; outline:none; }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: sticky; top:0; z-index:100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 20px; font-weight: 800; color: var(--primary);
+    }
+    .nav-links { display: flex; align-items: center; gap: 6px; }
+    .nav-links a {
+      font-size: 13px; font-weight: 500; color: var(--text-mid);
+      padding: 7px 14px; border-radius: var(--radius-full);
+      transition: background var(--transition), color var(--transition);
+    }
+    .nav-links a:hover, .nav-links a.active { background:var(--primary); color:white; }
+    .nav-back {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 500; color: var(--text-mid);
+      padding: 7px 16px; border-radius: var(--radius-full);
+      border: 1.5px solid var(--border);
+      transition: all var(--transition);
+    }
+    .nav-back:hover { border-color:var(--primary); color:var(--primary); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      padding: 60px 40px 80px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .hero::before, .hero::after {
+      content:''; position:absolute; border-radius:50%;
+      background: rgba(255,255,255,0.08);
+    }
+    .hero::before { width:320px; height:320px; top:-80px; left:-80px; }
+    .hero::after  { width:200px; height:200px; bottom:-60px; right:60px; }
+    .hero-icon {
+      width:70px; height:70px; background:rgba(255,255,255,0.2);
+      border-radius:50%; display:flex; align-items:center; justify-content:center;
+      margin: 0 auto 20px; animation: pulse 2.5s ease-in-out infinite;
+    }
+    .hero-icon i { font-size:28px; color:white; }
+    .hero h1 {
+      font-size: clamp(26px,5vw,42px); font-weight:800; color:white;
+      letter-spacing:-1px; margin-bottom:12px;
+    }
+    .hero p { font-size:15px; color:rgba(255,255,255,0.85); max-width:500px; margin:0 auto; line-height:1.7; }
+
+    /* ── CONTENT WRAPPER ── */
+    .page-body {
+      max-width: 900px; margin: 0 auto;
+      padding: 60px 24px 80px;
+      display: flex; flex-direction: column; gap: 24px;
+    }
+
+    /* Last updated badge */
+    .last-updated {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--primary-light); color: var(--primary);
+      font-size: 12px; font-weight: 600; padding: 6px 14px;
+      border-radius: var(--radius-full); align-self: flex-start;
+      animation: fadeInUp 0.4s ease both;
+    }
+
+    /* Each policy section card */
+    .policy-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 32px 36px;
+      animation: fadeInUp 0.5s ease both;
+      transition: box-shadow var(--transition);
+    }
+    .policy-card:hover { box-shadow: var(--shadow-md); }
+    .policy-card:nth-child(2) { animation-delay: 0.05s; }
+    .policy-card:nth-child(3) { animation-delay: 0.10s; }
+    .policy-card:nth-child(4) { animation-delay: 0.15s; }
+    .policy-card:nth-child(5) { animation-delay: 0.20s; }
+    .policy-card:nth-child(6) { animation-delay: 0.25s; }
+
+    /* Card header row: icon + title */
+    .card-header {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
+    }
+    .card-icon {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink:0;
+      background: var(--primary-light); color: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .policy-card h2 {
+      font-size: 17px; font-weight: 700; color: var(--text-dark); letter-spacing:-0.2px;
+    }
+
+    /* Divider under header */
+    .card-divider {
+      height: 1px; background: var(--border); margin-bottom: 16px;
+    }
+
+    .policy-card p {
+      font-size: 14px; color: var(--text-mid); line-height: 1.85;
+    }
+
+    /* Bullet list inside policy cards */
+    .policy-list {
+      list-style: none; padding: 0; margin-top: 12px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .policy-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; color: var(--text-mid); line-height: 1.7;
+    }
+    .policy-list li i {
+      color: var(--primary); font-size: 11px; margin-top: 5px; flex-shrink:0;
+    }
+
+    /* Disclaimer box — styled differently (warning tone) */
+    .disclaimer-card {
+      background: #fffbea;
+      border: 1.5px solid #f5e06a;
+      border-radius: var(--radius);
+      padding: 28px 36px;
+      animation: fadeInUp 0.5s ease 0.3s both;
+    }
+    .disclaimer-card .card-icon { background:#fff3cd; color:#b8860b; }
+    .disclaimer-card h2 { color: #7a6000; }
+    .disclaimer-card p { font-size:13px; color:#6b5500; line-height:1.8; }
+
+    /* Back button at bottom */
+    .back-section {
+      text-align: center; padding: 10px 0 20px;
+      animation: fadeInUp 0.5s ease 0.35s both;
+    }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white; padding: 13px 32px; border-radius: var(--radius-full);
+      font-size: 14px; font-weight: 600;
+      transition: opacity var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+    .back-btn:hover {
+      opacity:0.9; transform:translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232,24,58,0.28);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeInUp {
+      from { opacity:0; transform:translateY(22px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    @keyframes pulse {
+      0%,100% { transform:scale(1); }
+      50%      { transform:scale(1.08); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:600px) {
+      .navbar { padding:0 16px; }
+      .nav-links { display:none; }
+      .hero { padding:40px 20px 60px; }
+      .page-body { padding:30px 16px 60px; }
+      .policy-card, .disclaimer-card { padding:22px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-brand"><i class="fa fa-cutlery"></i> Laziza Food</div>
+    <div class="nav-links">
+      <a href="index.html"><i class="fa fa-home"></i> Home</a>
+      <a href="services.html"><i class="fa fa-star"></i> Services</a>
+      <a href="contact.html"><i class="fa fa-envelope"></i> Contact</a>
+      <a href="privacy.html" class="active"><i class="fa fa-lock"></i> Privacy</a>
+    </div>
+    <a href="index.html" class="nav-back"><i class="fa fa-arrow-left"></i> Back to Menu</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-icon"><i class="fa fa-shield"></i></div>
+    <h1>Privacy Policy</h1>
+    <p>Your privacy matters to us. Learn how Laziza Food collects, uses, and protects your information.</p>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="page-body">
+
+    <span class="last-updated"><i class="fa fa-calendar"></i> Last updated: January 2025</span>
+
+    <!-- Intro -->
+    <div class="policy-card">
+      <div class="card-header">
+        <div class="card-icon"><i class="fa fa-info-circle"></i></div>
+        <h2>Welcome to Laziza Food</h2>
+      </div>
+      <div class="card-divider"></div>
+      <p>This Privacy Policy is designed to help you understand how we collect, use, disclose, and safeguard your personal information when you use our website or mobile application. By using Laziza Food, you agree to the terms outlined in this policy. We are committed to protecting your privacy and handling your data with transparency and care.</p>
+    </div>
+
+    <!-- What we collect -->
+    <div class="policy-card">
+      <div class="card-header">
+        <div class="card-icon"><i class="fa fa-database"></i></div>
+        <h2>Information We Collect</h2>
+      </div>
+      <div class="card-divider"></div>
+      <p>We may collect the following types of information when you use our services:</p>
+      <ul class="policy-list">
+        <li><i class="fa fa-circle"></i> <span><strong>Personal Information:</strong> Your name, email address, phone number, and delivery address when you register or place an order.</span></li>
+        <li><i class="fa fa-circle"></i> <span><strong>Order Information:</strong> Details of the items you order, payment method, and order history.</span></li>
+        <li><i class="fa fa-circle"></i> <span><strong>Device Information:</strong> IP address, browser type, and operating system for security and analytics purposes.</span></li>
+        <li><i class="fa fa-circle"></i> <span><strong>Location Data:</strong> Your delivery address or approximate location to provide accurate delivery services.</span></li>
+      </ul>
+    </div>
+
+    <!-- How we use it -->
+    <div class="policy-card">
+      <div class="card-header">
+        <div class="card-icon"><i class="fa fa-cogs"></i></div>
+        <h2>How We Use Your Information</h2>
+      </div>
+      <div class="card-divider"></div>
+      <p>Your information is used solely to improve your experience with Laziza Food:</p>
+      <ul class="policy-list">
+        <li><i class="fa fa-circle"></i> To process and deliver your food orders accurately and on time.</li>
+        <li><i class="fa fa-circle"></i> To send you order confirmations, updates, and support messages.</li>
+        <li><i class="fa fa-circle"></i> To personalise your experience and suggest menu items you may enjoy.</li>
+        <li><i class="fa fa-circle"></i> To improve our website, app, and overall services based on usage patterns.</li>
+        <li><i class="fa fa-circle"></i> To comply with legal obligations and prevent fraudulent activity.</li>
+      </ul>
+    </div>
+
+    <!-- Data sharing -->
+    <div class="policy-card">
+      <div class="card-header">
+        <div class="card-icon"><i class="fa fa-share-alt"></i></div>
+        <h2>Sharing Your Information</h2>
+      </div>
+      <div class="card-divider"></div>
+      <p>We respect your privacy. We do <strong>not</strong> sell, rent, or trade your personal information to third parties. We may share your data only in the following limited circumstances:</p>
+      <ul class="policy-list">
+        <li><i class="fa fa-circle"></i> With delivery partners to fulfil your orders.</li>
+        <li><i class="fa fa-circle"></i> With payment processors to securely handle transactions.</li>
+        <li><i class="fa fa-circle"></i> When required by law or legal proceedings.</li>
+      </ul>
+    </div>
+
+    <!-- Your rights -->
+    <div class="policy-card">
+      <div class="card-header">
+        <div class="card-icon"><i class="fa fa-user-shield"></i></div>
+        <h2>Your Rights</h2>
+      </div>
+      <div class="card-divider"></div>
+      <p>You have the following rights regarding your personal data:</p>
+      <ul class="policy-list">
+        <li><i class="fa fa-circle"></i> <strong>Access:</strong> Request a copy of the personal data we hold about you.</li>
+        <li><i class="fa fa-circle"></i> <strong>Correction:</strong> Ask us to update or correct inaccurate information.</li>
+        <li><i class="fa fa-circle"></i> <strong>Deletion:</strong> Request that we delete your account and personal data.</li>
+        <li><i class="fa fa-circle"></i> <strong>Opt-Out:</strong> Unsubscribe from marketing communications at any time.</li>
+      </ul>
+      <p style="margin-top:14px;">To exercise any of these rights, please contact us at <strong>privacy@lazizafood.com</strong>.</p>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer-card">
+      <div class="card-header">
+        <div class="card-icon"><i class="fa fa-exclamation-triangle"></i></div>
+        <h2>General Disclaimer</h2>
+      </div>
+      <div class="card-divider" style="background:#f0d060;"></div>
+      <p>The Laziza Food online services are provided <strong>"as is"</strong> and <strong>"as available"</strong> without warranties of any kind. We do not warrant that the service will be uninterrupted, error-free, or free of harmful components. We are not liable for any loss or damage arising from your access to or use of our services. You assume responsibility for all costs related to servicing or repairing your device as a result of using our platform. This disclaimer applies to the fullest extent permitted by applicable law.</p>
+    </div>
+
+    <!-- Contact for privacy -->
+    <div class="policy-card">
+      <div class="card-header">
+        <div class="card-icon"><i class="fa fa-envelope"></i></div>
+        <h2>Contact Us About Privacy</h2>
+      </div>
+      <div class="card-divider"></div>
+      <p>If you have any questions or concerns about this Privacy Policy or how we handle your data, please reach out to us:</p>
+      <ul class="policy-list" style="margin-top:14px;">
+        <li><i class="fa fa-envelope"></i> <span>privacy@lazizafood.com</span></li>
+        <li><i class="fa fa-phone"></i> <span>+92 300 1234567</span></li>
+        <li><i class="fa fa-map-marker"></i> <span>123 Food Street, Lahore, Pakistan</span></li>
+      </ul>
+    </div>
+
+    <div class="back-section">
+      <a href="index.html" class="back-btn"><i class="fa fa-arrow-left"></i> Back to Menu</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
