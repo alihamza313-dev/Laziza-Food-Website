@@ -1,0 +1,992 @@
+/* ============================================================
+   LAZIZA FOOD - Modern Professional CSS
+   File: css/index.css
+   Structure: Variables → Reset → Layout → Header →
+              Cards → Sidebar → Cart Panel → Animations → Responsive
+   ============================================================ */
+
+
+/* ============================================================
+   1. CSS VARIABLES (Root Colors & Settings)
+   WHY: Instead of writing the same color everywhere, we store
+   it in one place. If you want to change the red color, you
+   change ONE line and it updates everywhere automatically.
+   ============================================================ */
+:root {
+  --primary:       #e8183a;      /* Main brand red */
+  --primary-dark:  #b5102b;      /* Darker red for hover states */
+  --primary-light: #ffeef1;      /* Very light red for backgrounds */
+  --accent:        #ff6b35;      /* Orange accent */
+  --gold:          #f5a623;      /* Gold for star ratings */
+  --text-dark:     #1a1a2e;      /* Almost black for headings */
+  --text-mid:      #4a4a6a;      /* Mid-grey for body text */
+  --text-light:    #9898b0;      /* Light grey for subtle text */
+  --bg-main:       #f7f7fc;      /* Main background */
+  --bg-card:       #ffffff;      /* Card background */
+  --bg-sidebar:    #ffffff;      /* Sidebar background */
+  --border:        #ebebf5;      /* Light border color */
+  --shadow-sm:     0 2px 8px rgba(0,0,0,0.07);
+  --shadow-md:     0 6px 20px rgba(0,0,0,0.10);
+  --shadow-lg:     0 12px 40px rgba(0,0,0,0.14);
+  --radius-sm:     8px;
+  --radius-md:     14px;
+  --radius-lg:     22px;
+  --radius-full:   999px;
+  --transition:    0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  --font:          'Poppins', sans-serif;
+}
+
+
+/* ============================================================
+   2. RESET & BASE STYLES
+   WHY: Browsers have default padding/margin that differ.
+   We reset them so our design is consistent everywhere.
+   ============================================================ */
+*, *::before, *::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font);
+  color: var(--text-dark);
+  background: var(--bg-main);
+  -webkit-font-smoothing: antialiased; /* Makes fonts crisper on Mac */
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: var(--font);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* ============================================================
+   3. MAIN LAYOUT (3-Column Grid)
+   WHY: CSS Grid makes 3 columns easy. We keep the same layout
+   your original had: left sidebar | main content | right sidebar.
+   ============================================================ */
+.container {
+  display: grid;
+  grid-template-columns: 240px 1fr 300px;
+min-height: 100vh;
+overflow: visible;
+}
+
+
+/* ============================================================
+   4. LEFT SIDEBAR — Navigation Menu
+   ============================================================ */
+#menu {
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow-y: auto;
+  box-shadow: 2px 0 12px rgba(0,0,0,0.04);
+}
+
+.brand-logo {
+  padding: 28px 24px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Brand logo image */
+.brand-logo-img {
+  width: 160px;
+  height: auto;
+  margin: 0 auto 20px;
+  /* WHY: object-fit keeps the image proportional */
+  object-fit: contain;
+  /* Fallback if logo not found */
+  min-height: 60px;
+}
+
+/* Navigation links */
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.menu-items a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-mid);
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  /* WHY: transition makes the hover animation smooth instead of instant */
+  transition: background var(--transition), color var(--transition), transform var(--transition);
+  letter-spacing: 0.2px;
+}
+
+.menu-items a i {
+  font-size: 15px;
+  width: 18px;
+  text-align: center;
+  color: var(--primary);
+  transition: transform var(--transition);
+}
+
+/* Hover effect: red background + white text */
+.menu-items a:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateX(4px); /* Slides slightly right on hover */
+}
+
+.menu-items a:hover i {
+  color: white;
+  transform: scale(1.15);
+}
+
+
+/* ============================================================
+   5. MIDDLE AREA — Food Items Container
+   ============================================================ */
+#food-container {
+  background: var(--bg-main);
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Custom scrollbar for modern look */
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-light) transparent;
+}
+
+#food-container::-webkit-scrollbar {
+  width: 5px;
+}
+#food-container::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 10px;
+}
+
+
+/* ============================================================
+   6. STICKY HEADER (Search + Cart bar at top)
+   WHY: position:sticky keeps it visible as you scroll down.
+   ============================================================ */
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 28px;
+  /* sticky = stays at top while scrolling */
+  position: sticky;
+  top: 0;
+  background: rgba(247, 247, 252, 0.95);
+  /* Frosted glass effect */
+  backdrop-filter: blur(10px);
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Address button */
+.address-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: white;
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 500;
+  transition: all var(--transition);
+}
+
+.address-btn:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* Header utility buttons group */
+.util {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.util-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: white;
+  color: var(--text-mid);
+  border: 1.5px solid var(--border);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 500;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.util-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Cart button has a special red style */
+.cart-btn {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.cart-btn:hover {
+  background: var(--primary-dark);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(232, 24, 58, 0.35);
+}
+
+/* Account button in right sidebar */
+.account-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: white;
+  color: var(--text-mid);
+  border: 1.5px solid var(--border);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 500;
+  transition: all var(--transition);
+}
+
+.account-btn:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+
+/* ============================================================
+   7. SEARCH BAR
+   WHY: Hidden by default, shown when user clicks Search button.
+   The .hidden class toggles it.
+   ============================================================ */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 28px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  /* Slide-down animation */
+  animation: slideDown 0.25s ease;
+}
+
+.search-bar.hidden {
+  display: none;
+}
+
+#search-input {
+  flex: 1;
+  padding: 10px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-full);
+  font-family: var(--font);
+  font-size: 14px;
+  color: var(--text-dark);
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+#search-input:focus {
+  border-color: var(--primary);
+}
+
+#close-search {
+  color: var(--text-light);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 5px;
+  transition: color var(--transition);
+}
+
+#close-search:hover {
+  color: var(--primary);
+}
+
+
+/* ============================================================
+   8. FOOD SECTIONS — Category Headers
+   ============================================================ */
+#burger, #pizza, #wrap, #beverage {
+  padding: 30px 28px 20px;
+}
+
+/* Category title (Burgers, Pizza Corner etc.) */
+.category-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: -0.3px;
+}
+
+.category-name i {
+  color: var(--primary);
+  font-size: 10px;
+  /* WHY: translateY(-1px) visually centers the dot with the text */
+  transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   9. FOOD ITEM CARDS
+   WHY: This is the most important section. We changed from
+   id="item-card" to class="item-card" and made it modern.
+   ============================================================ */
+
+/* Wrapper row for cards in each section */
+#burger, #pizza, #wrap, #beverage {
+  /* Use flex so cards sit side by side and wrap to next line */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 30px 28px 10px;
+}
+
+/* But the category title needs to be full width */
+.category-name {
+  width: 100%;
+  flex-basis: 100%;
+}
+
+/* Individual Food Card */
+.item-card {
+  background: var(--bg-card);
+  width: calc(33.33% - 12px);
+min-width: 150px;
+  border-radius: var(--radius-md);
+  padding: 14px;
+  cursor: pointer;
+  /* WHY: box-shadow gives depth, making cards "float" */
+  box-shadow: var(--shadow-sm);
+  border: 1.5px solid transparent;
+  /* Smooth transition for hover effects */
+  transition: transform var(--transition),
+              box-shadow var(--transition),
+              border-color var(--transition);
+  /* Animation when page loads */
+  animation: fadeInUp 0.5s ease both;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle top border decoration */
+.item-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transform: scaleX(0);
+  transition: transform var(--transition);
+}
+
+/* On hover: card lifts up and shows red border + top line */
+.item-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
+}
+
+.item-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Card top row: rating + heart icon */
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Rating badge */
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--text-dark);
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: var(--radius-full);
+}
+
+.rating i {
+  font-size: 10px;
+}
+
+/* Heart icon */
+.fa-heart-o, .fa-heart {
+  padding: 7px;
+  background: var(--bg-main);
+  border-radius: 50%;
+  font-size: 14px;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all var(--transition);
+  border: 1.5px solid var(--border);
+}
+
+.fa-heart-o:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: var(--primary);
+  transform: scale(1.15);
+}
+
+/* When heart is toggled (item in cart) */
+.fa-heart.toggle-heart {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Food image — circular style */
+.item-card img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;    /* WHY: keeps image proportional inside circle */
+  margin: 0 auto 12px;
+  /* WHY: border creates a white frame around the circular image */
+  border: 3px solid var(--bg-main);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+/* Image rotates and scales slightly on card hover */
+.item-card:hover img {
+  transform: scale(1.08) rotate(2deg);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Item name */
+.item-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 4px;
+  /* WHY: nowrap + ellipsis shows "..." if name is too long */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Item price */
+.item-price {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--primary);
+  text-align: center;
+}
+
+
+/* ============================================================
+   10. RIGHT SIDEBAR — Explore Menu + Cart Panel
+   ============================================================ */
+#cart {
+  background: var(--bg-sidebar);
+  border-left: 1px solid var(--border);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin;
+}
+
+.taste-header {
+  padding: 18px 20px;
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  z-index: 10;
+}
+
+/* "Explore Menu" heading */
+.item-menu {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-dark);
+  padding: 20px 20px 8px;
+  letter-spacing: -0.2px;
+}
+
+/* Decorative underline */
+.border {
+  width: 36px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 2px;
+  margin: 0 20px 20px;
+}
+
+/* Each category in the explore list */
+.list-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  margin: 2px 10px;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.list-card:hover {
+  background: var(--primary-light);
+  transform: translateX(4px);
+}
+
+/* Category thumbnail image */
+.list-card img {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border);
+  transition: transform var(--transition), border-color var(--transition);
+}
+
+.list-card:hover img {
+  transform: scale(1.08);
+  border-color: var(--primary);
+}
+
+/* Category link text */
+.list-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-mid);
+  transition: color var(--transition);
+}
+
+.list-card:hover .list-name {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   11. CART PANEL (The dropdown table inside the right sidebar)
+   WHY: This was commented out before. Now it's a proper panel.
+   The key fix: use flex-column so the footer is always visible.
+   ============================================================ */
+.cart-panel {
+  margin: 16px 10px;
+  background: white;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  /* WHY: flex + column means header | scrollable-body | footer */
+  display: flex;
+  flex-direction: column;
+  /* WHY: max-height limits the panel so it never overflows the sidebar.
+     The table area inside will scroll, but the footer stays pinned. */
+  max-height: 500px;
+  overflow: hidden;
+  animation: fadeInUp 0.3s ease;
+}
+
+.cart-panel.hidden {
+  display: none;
+}
+
+.cart-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  background: var(--primary);
+  color: white;
+}
+
+#card-title {
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.close-cart-btn {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  transition: background var(--transition);
+}
+
+.close-cart-btn:hover {
+  background: rgba(255,255,255,0.35);
+}
+
+/* Cart table wrapper — this is the scrollable middle section */
+/* WHY: flex:1 + overflow-y:auto means it takes remaining space
+   and adds a scrollbar when items overflow, keeping footer visible */
+#cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  flex: 1;
+  overflow-y: auto;
+  display: block;  /* needed for overflow-y to work on table */
+}
+
+#cart-table thead,
+#cart-table tbody {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+#cart-table thead tr {
+  background: var(--bg-main);
+}
+
+#cart-table th {
+  padding: 8px 10px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-mid);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+#cart-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
+}
+
+#cart-table tbody tr:hover {
+  background: var(--primary-light);
+}
+
+#cart-table td {
+  padding: 8px 10px;
+  vertical-align: middle;
+  color: var(--text-dark);
+}
+
+/* Qty buttons inside cart */
+#cart-table button {
+  background: var(--primary);
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 13px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition);
+}
+
+#cart-table button:hover {
+  background: var(--primary-dark);
+}
+
+/* Cart footer with total + checkout */
+.cart-footer {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-main);
+}
+
+#m-total-amount {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.checkout-btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.checkout-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   12. TOAST NOTIFICATION
+   WHY: A small popup that shows "Item added to cart!" briefly.
+   ============================================================ */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--text-dark);
+  color: white;
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 500;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-shadow: var(--shadow-lg);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast.hidden {
+  display: none;
+}
+
+
+/* ============================================================
+   13. ANIMATIONS
+   WHY: fadeInUp makes elements "appear from below" on load.
+        slideDown is for the search bar appearing.
+   ============================================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger card animations: each card appears slightly after the previous */
+.item-card:nth-child(2)  { animation-delay: 0.05s; }
+.item-card:nth-child(3)  { animation-delay: 0.10s; }
+.item-card:nth-child(4)  { animation-delay: 0.15s; }
+.item-card:nth-child(5)  { animation-delay: 0.20s; }
+.item-card:nth-child(6)  { animation-delay: 0.25s; }
+.item-card:nth-child(7)  { animation-delay: 0.30s; }
+
+
+/* ============================================================
+   14. RESPONSIVE DESIGN
+   WHY: On smaller screens, we change the grid layout.
+   "media query" = CSS that only applies at certain screen sizes.
+   ============================================================ */
+
+/* TABLET (screens up to 1024px wide) */
+@media (max-width: 1024px) {
+.container {
+  grid-template-columns: 220px 1fr 260px;
+}
+
+  #menu {
+    display: block;
+  }
+
+  .item-card {
+    width: calc(33.33% - 12px);
+    min-width: 150px;
+  }
+
+  #burger, #pizza, #wrap, #beverage {
+    padding: 20px 18px 10px;
+  }
+}
+
+/* MOBILE (screens up to 768px wide) */
+@media (max-width: 768px) {
+  .container {
+    /* Stack everything vertically on mobile */
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    height: auto;
+    overflow: visible;
+  }
+
+  #menu {
+    display: block;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .brand-logo {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .brand-logo-img {
+    width: 70px;
+    margin: 0;
+  }
+
+  .menu-items {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 0;
+  }
+
+  .menu-items a {
+    font-size: 12px;
+    padding: 7px 10px;
+  }
+
+  #food-container {
+    overflow: visible;
+  }
+
+  #header {
+    padding: 12px 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  #burger, #pizza, #wrap, #beverage {
+    padding: 20px 16px 10px;
+    gap: 12px;
+  }
+
+  .item-card {
+    /* 2 cards per row on mobile */
+    width: calc(50% - 6px);
+  }
+
+  #cart {
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .taste-header {
+    padding: 12px 16px;
+  }
+}
+
+/* VERY SMALL MOBILE (up to 400px) */
+@media (max-width: 400px) {
+  .item-card {
+    width: 100%; /* 1 card per row */
+  }
+}
+
+/* /* for geolocation /* */
+
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: var(--radius-lg);
+    width: 90%;
+    max-width: 400px;
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+}
+
+.modal-body { margin: 20px 0; }
+
+.divider {
+    margin: 15px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+}
+.divider span {
+    background: white;
+    padding: 0 10px;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+#manual-address {
+    width: 100%;
+    padding: 12px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-top: 10px;
+}
+
+.hidden { display: none !important; }
+
+
+
+
