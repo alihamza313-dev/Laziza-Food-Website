@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laziza Food</title>
+  <!-- CHANGE: Fixed the broken stylesheet link (removed extra space) -->
+  <!-- CHANGE: Added Google Fonts - Poppins for modern look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div id="container" class="container">
+
+    <!-- LEFT SIDEBAR: Navigation Menu -->
+    <!-- NO STRUCTURAL CHANGE - only cleaned up -->
+    <div id="menu">
+      <div class="brand-logo">
+        <!-- NOTE: Rename your image folder from "New folder" to "assets/images" locally -->
+        <img src="logo/logobg.png" alt="Laziza Food Logo" class="brand-logo-img">
+        <nav class="menu-items">
+          <a href="#Home"><i class="fa fa-home"></i> Home</a>
+          <a href="services.html"><i class="fa fa-cutlery"></i> Services</a>
+          <a href="privacy.html"><i class="fa fa-lock"></i> Privacy Policy</a>
+          <a href="contact.html"><i class="fa fa-envelope"></i> Contact Us</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- MIDDLE: Food Items Area -->
+    <div id="food-container">
+
+      <!-- Sticky Header with Search and Cart -->
+      <div id="header">
+        <div class="add-box">
+          <!-- CHANGE: Using <button> is more accessible than <i> for clickable elements -->
+          <!-- <button class="address-btn" id="add-address">
+            <i class="fa fa-map-marker"></i> Your Address
+          </button> -->
+          <button class="address-btn" onclick="toggleAddressModal()">
+            <i class="fa fa-map-marker"></i> <span>Your Address</span>
+          </button>
+        </div>
+        <div class="util">
+          <button class="util-btn" id="search-btn">
+            <i class="fa fa-search"></i> Search
+          </button>
+          <!-- CHANGE: Cart button now opens the cart panel -->
+          <button class="util-btn cart-btn" id="cart-plus" onclick="toggleCartPanel()">
+            <i class="fa fa-shopping-cart"></i>
+            <span id="cart-count">0</span> Items
+          </button>
+        </div>
+      </div>
+
+      <!-- Search Bar (Hidden by default, shown on click) -->
+      <!-- CHANGE: Added a real search bar that toggles -->
+      <div id="search-bar" class="search-bar hidden">
+        <input type="text" id="search-input" placeholder="Search for burgers, pizza, wraps...">
+        <i class="fa fa-times" id="close-search"></i>
+      </div>
+
+      <!-- Food Items Grid -->
+      <div id="food-item">
+
+        <!-- BURGERS SECTION -->
+        <section id="Burgers">
+          <div id="burger">
+            <p class="category-name"><i class="fa fa-circle"></i> Burgers</p>
+
+            <!-- CHANGE: id="item-card" → class="item-card" (IDs must be unique!) -->
+            <!-- CHANGE: Added data-* attributes so JavaScript can read item info cleanly -->
+            <div class="item-card" data-name="Zinger Burger" data-price="5">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.3</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/burgers/zinger.jpeg" alt="Zinger Burger">
+              <p class="item-name">Zinger Burger</p>
+              <p class="item-price">$5.00</p>
+            </div>
+
+            <div class="item-card" data-name="Chicken Tikka" data-price="5">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.3</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/burgers/chiken-tikka.jpeg" alt="Chicken Tikka Burger">
+              <p class="item-name">Chicken Tikka</p>
+              <p class="item-price">$5.00</p>
+            </div>
+
+            <div class="item-card" data-name="Grilled Burger" data-price="5">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.3</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/burgers/grilled.jpeg" alt="Grilled Burger">
+              <p class="item-name">Grilled Burger</p>
+              <p class="item-price">$5.00</p>
+            </div>
+
+            <div class="item-card" data-name="Lapeta Burger" data-price="5">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.3</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/burgers/lapeta.jpg" alt="Lapeta Burger">
+              <p class="item-name">Lapeta Burger</p>
+              <p class="item-price">$5.00</p>
+            </div>
+
+            <div class="item-card" data-name="Patti Burger" data-price="5">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.3</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/burgers/patti.jpg" alt="Patti Burger">
+              <p class="item-name">Patti Burger</p>
+              <p class="item-price">$5.00</p>
+            </div>
+
+            <div class="item-card" data-name="Shami Burger" data-price="5">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.3</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/burgers/shami.jpeg" alt="Shami Burger">
+              <p class="item-name">Shami Burger</p>
+              <p class="item-price">$5.00</p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- PIZZA SECTION -->
+        <section id="Piza">
+          <div id="pizza">
+            <p class="category-name"><i class="fa fa-circle"></i> Pizza Corner</p>
+
+            <div class="item-card" data-name="Achari Pizza" data-price="8">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.5</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/piza/achari-piza.jpeg" alt="Achari Pizza">
+              <p class="item-name">Achari Pizza</p>
+              <p class="item-price">$8.00</p>
+            </div>
+
+            <div class="item-card" data-name="BBQ Pizza" data-price="8">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.5</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/piza/bbq-piza.png" alt="BBQ Pizza">
+              <p class="item-name">BBQ Pizza</p>
+              <p class="item-price">$8.00</p>
+            </div>
+
+            <div class="item-card" data-name="Supreme Pizza" data-price="9">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.7</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/piza/sup.webp" alt="Supreme Pizza">
+              <p class="item-name">Supreme Pizza</p>
+              <p class="item-price">$9.00</p>
+            </div>
+
+            <div class="item-card" data-name="Fatija Pizza" data-price="7">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.2</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/piza/fatija-piza.png" alt="Fatija Pizza">
+              <p class="item-name">Fatija Pizza</p>
+              <p class="item-price">$7.00</p>
+            </div>
+
+            <div class="item-card" data-name="Tandoori Pizza" data-price="8">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.4</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/piza/fat.webp" alt="Tandoori Pizza">
+              <p class="item-name">Tandoori Pizza</p>
+              <p class="item-price">$8.00</p>
+            </div>
+
+            <div class="item-card" data-name="Tikka Pizza" data-price="8">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.6</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/piza/bb.jpg" alt="Tikka Pizza">
+              <p class="item-name">Tikka Pizza</p>
+              <p class="item-price">$8.00</p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- WRAPS SECTION -->
+        <section id="Wraps">
+          <div id="wrap">
+            <p class="category-name"><i class="fa fa-circle"></i> Wraps</p>
+
+            <div class="item-card" data-name="Beef Wrap" data-price="6">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.1</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/wraps/beef-wrap.jpeg" alt="Beef Wrap">
+              <p class="item-name">Beef Wrap</p>
+              <p class="item-price">$6.00</p>
+            </div>
+
+            <div class="item-card" data-name="Big Bite Wrap" data-price="6">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.3</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/wraps/blt-wrap.jpg" alt="Big Bite Wrap">
+              <p class="item-name">Big Bite Wrap</p>
+              <p class="item-price">$6.00</p>
+            </div>
+
+            <div class="item-card" data-name="Chicken Wrap" data-price="6">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.5</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/wraps/ChickenWrap.webp" alt="Chicken Wrap">
+              <p class="item-name">Chicken Wrap</p>
+              <p class="item-price">$6.00</p>
+            </div>
+
+            <div class="item-card" data-name="Veggie Wrap" data-price="5">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.0</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/wraps/veggie-wrap.jpg" alt="Veggie Wrap">
+              <p class="item-name">Veggie Wrap</p>
+              <p class="item-price">$5.00</p>
+            </div>
+
+            <div class="item-card" data-name="Fatija Wrap" data-price="6">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.2</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/wraps/chicken-fajita-wraps.jpg" alt="Fatija Wrap">
+              <p class="item-name">Fatija Wrap</p>
+              <p class="item-price">$6.00</p>
+            </div>
+
+            <div class="item-card" data-name="Grilled Wrap" data-price="6">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.4</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/wraps/grilled-wrap.webp" alt="Grilled Wrap">
+              <p class="item-name">Grilled Wrap</p>
+              <p class="item-price">$6.00</p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- BEVERAGES SECTION -->
+        <section id="Beverages">
+          <div id="beverage">
+            <p class="category-name"><i class="fa fa-circle"></i> Beverages</p>
+
+            <div class="item-card" data-name="7up 1.5L" data-price="3">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.0</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/beverages/1.5-7up.webp" alt="7up 1.5 litre">
+              <p class="item-name">7up 1.5/litre</p>
+              <p class="item-price">$3.00</p>
+            </div>
+
+            <div class="item-card" data-name="7up 1L" data-price="2">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.0</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/beverages/litre.webp" alt="7up 1 litre">
+              <p class="item-name">7up 1/litre</p>
+              <p class="item-price">$2.00</p>
+            </div>
+
+            <div class="item-card" data-name="7up 500ml" data-price="1">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.0</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/beverages/500-ml-7up.jpeg" alt="7up 500ml">
+              <p class="item-name">7up 500ml</p>
+              <p class="item-price">$1.00</p>
+            </div>
+
+            <div class="item-card" data-name="Pepsi 1.5L" data-price="3">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.2</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/beverages/1.5-pepsi.jpg" alt="Pepsi 1.5 litre">
+              <p class="item-name">Pepsi 1.5/litre</p>
+              <p class="item-price">$3.00</p>
+            </div>
+
+            <div class="item-card" data-name="Pepsi 1L" data-price="2">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.2</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/beverages/pepsi-litre.jpg" alt="Pepsi 1 litre">
+              <p class="item-name">Pepsi 1/litre</p>
+              <p class="item-price">$2.00</p>
+            </div>
+
+            <div class="item-card" data-name="Pepsi 500ml" data-price="1">
+              <div class="card-top">
+                <span class="rating"><i class="fa fa-star"></i> 4.2</span>
+                <i class="fa fa-heart-o add-to-cart"></i>
+              </div>
+              <img src="images/beverages/pepsi.jpg" alt="Pepsi 500ml">
+              <p class="item-name">Pepsi 500ml</p>
+              <p class="item-price">$1.00</p>
+            </div>
+
+          </div>
+        </section>
+
+      </div><!-- end #food-item -->
+    </div><!-- end #food-container -->
+
+    <!-- RIGHT SIDEBAR: Category List + Cart Panel -->
+    <div id="cart">
+      <div class="taste-header">
+        <div class="util">
+          <!-- CHANGE: Kept the account link as it was -->
+          <a href="sign website.html" class="util-btn account-btn">
+            <i class="fa fa-user-circle"></i> Account
+          </a>
+        </div>
+      </div>
+
+      <!-- CHANGE: Cleaned up and properly structured category list -->
+      <div id="category-list">
+        <p class="item-menu">Explore Menu</p>
+        <div class="border"></div>
+
+        <div class="list-card">
+          <a href="#Burgers"><img src="images/burgers/zinger.jpeg" alt="Burgers"></a>
+          <a href="#Burgers" class="list-name">Burgers</a>
+        </div>
+
+        <div class="list-card">
+          <a href="#Piza"><img src="images/piza/achari-piza.jpeg" alt="Pizza"></a>
+          <a href="#Piza" class="list-name">Pizza</a>
+        </div>
+
+        <div class="list-card">
+          <a href="#Wraps"><img src="images/wraps/beef-wrap.jpeg" alt="Wraps"></a>
+          <a href="#Wraps" class="list-name">Wraps</a>
+        </div>
+
+        <div class="list-card">
+          <a href="#Beverages"><img src="images/beverages/1.5-7up.webp" alt="Beverages"></a>
+          <a href="#Beverages" class="list-name">Beverages</a>
+        </div>
+
+      </div><!-- end #category-list -->
+
+      <!-- CHANGE: Cart panel properly uncommented, cleaned, and structured -->
+      <!-- This was in commented HTML before - now it's a real working panel -->
+      <div id="cart-panel" class="cart-panel hidden">
+        <div class="cart-panel-header">
+          <p id="card-title"><i class="fa fa-shopping-cart"></i> Your Cart</p>
+          <button class="close-cart-btn" onclick="toggleCartPanel()">
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+        <table id="cart-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Name</th>
+              <th>Qty</th>
+              <th>Price</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <!-- Cart rows added by JavaScript -->
+          </tbody>
+        </table>
+        <div class="cart-footer">
+          <p id="m-total-amount">Total: $0.00</p>
+          <button class="checkout-btn">Checkout <i class="fa fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+    </div><!-- end #cart -->
+
+  </div><!-- end .container -->
+
+  <!-- Toast Notification (added by JS) -->
+  <div id="toast" class="toast hidden">Item added to cart!</div>
+
+  <div id="address-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <h3><i class="fa fa-map-marker"></i> Delivery Address</h3>
+      <p>Where should we send your food?</p>
+
+      <div class="modal-body">
+        <button id="get-location-btn" class="util-btn">
+          <i class="fa fa-crosshairs"></i> Use Current Location
+        </button>
+        <div class="divider"><span>OR</span></div>
+        <input type="text" id="manual-address" placeholder="Enter street, city, or zip code">
+      </div>
+
+      <div class="modal-footer">
+        <button class="close-modal-btn" onclick="toggleAddressModal()">Cancel</button>
+        <button class="save-address-btn" onclick="saveAddress()">Confirm Address</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+
+</html>
